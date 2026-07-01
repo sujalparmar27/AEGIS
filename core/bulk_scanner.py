@@ -64,6 +64,9 @@ class BulkScanner:
 
             vt_result = self.vt.scan(url)
 
+            if not vt_result["status"]:
+                print(f"[WARNING] VirusTotal skipped: {vt_result['error']}")
+
             self.db.save_scan(result, vt_result)
 
             results.append(result)

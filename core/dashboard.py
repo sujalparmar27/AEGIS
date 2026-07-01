@@ -437,6 +437,12 @@ class Dashboard:
 
         vt_result = vt.scan(url)
 
+        if not vt_result["status"]:
+            self.console.print(
+                "[yellow][WARNING][/yellow] VirusTotal analysis skipped: "
+                f"{vt_result['error']}"
+            )
+
         db = Database()
 
         db.save_scan(result, vt_result)

@@ -10,6 +10,12 @@ class VirusTotal:
 
     def scan(self, url):
 
+        if not self.api_key:
+            return {
+                "status": False,
+                "error": "VirusTotal API key not configured."
+            }
+
         headers = {
             "x-apikey": self.api_key
         }
